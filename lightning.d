@@ -719,17 +719,18 @@ jit_node_t* _jit_forward (jit_state_t*);
 
 jit_node_t* _jit_indirect (jit_state_t*);
 
-
 void _jit_link (jit_state_t*, jit_node_t*);
 
 jit_bool_t _jit_forward_p (jit_state_t*, jit_node_t*);
 jit_bool_t _jit_indirect_p (jit_state_t*, jit_node_t*);
 jit_bool_t _jit_target_p (jit_state_t*, jit_node_t*);
+
 void _jit_prolog (jit_state_t*);
 jit_int32_t _jit_allocai (jit_state_t*, jit_int32_t);
 void _jit_allocar (jit_state_t*, jit_int32_t, jit_int32_t);
 void _jit_ellipsis (jit_state_t*);
 jit_node_t* _jit_arg (jit_state_t*);
+
 void _jit_getarg_c (jit_state_t*, jit_gpr_t, jit_node_t*);
 void _jit_getarg_uc (jit_state_t*, jit_gpr_t, jit_node_t*);
 void _jit_getarg_s (jit_state_t*, jit_gpr_t, jit_node_t*);
@@ -743,14 +744,18 @@ void _jit_putargi (jit_state_t*, jit_word_t, jit_node_t*);
 
 void _jit_prepare (jit_state_t*);
 void _jit_ellipsis (jit_state_t*);
+
 void _jit_va_push (jit_state_t*, jit_gpr_t);
 void _jit_pushargr (jit_state_t*, jit_gpr_t);
 void _jit_pushargi (jit_state_t*, jit_word_t);
+
 void _jit_finishr (jit_state_t*, jit_gpr_t);
 jit_node_t* _jit_finishi (jit_state_t*, jit_pointer_t);
+
 void _jit_ret (jit_state_t*);
 void _jit_retr (jit_state_t*, jit_gpr_t);
 void _jit_reti (jit_state_t*, jit_word_t);
+
 void _jit_retval_c (jit_state_t*, jit_gpr_t);
 void _jit_retval_uc (jit_state_t*, jit_gpr_t);
 void _jit_retval_s (jit_state_t*, jit_gpr_t);
@@ -758,37 +763,54 @@ void _jit_retval_us (jit_state_t*, jit_gpr_t);
 void _jit_retval_i (jit_state_t*, jit_gpr_t);
 void _jit_retval_ui (jit_state_t*, jit_gpr_t);
 void _jit_retval_l (jit_state_t*, jit_gpr_t);
+
 void _jit_epilog (jit_state_t*);
+
 void _jit_patch (jit_state_t*, jit_node_t*);
 void _jit_patch_at (jit_state_t*, jit_node_t*, jit_node_t*);
 void _jit_patch_abs (jit_state_t*, jit_node_t*, jit_pointer_t);
+
 void _jit_realize (jit_state_t*);
+
 jit_pointer_t _jit_get_code (jit_state_t*, jit_word_t*);
 void _jit_set_code (jit_state_t*, jit_pointer_t, jit_word_t);
 jit_pointer_t _jit_get_data (jit_state_t*, jit_word_t*, jit_word_t*);
 void _jit_set_data (jit_state_t*, jit_pointer_t, jit_word_t, jit_word_t);
+
 void _jit_frame (jit_state_t*, jit_int32_t);
 void _jit_tramp (jit_state_t*, jit_int32_t);
+
 jit_pointer_t _jit_emit (jit_state_t*);
+
 void _jit_print (jit_state_t*);
+
 jit_node_t* _jit_arg_f (jit_state_t*);
+
 void _jit_getarg_f (jit_state_t*, jit_fpr_t, jit_node_t*);
 void _jit_putargr_f (jit_state_t*, jit_fpr_t, jit_node_t*);
 void _jit_putargi_f (jit_state_t*, jit_float32_t, jit_node_t*);
+
 void _jit_pushargr_f (jit_state_t*, jit_fpr_t);
 void _jit_pushargi_f (jit_state_t*, jit_float32_t);
+
 void _jit_retr_f (jit_state_t*, jit_fpr_t);
 void _jit_reti_f (jit_state_t*, jit_float32_t);
+
 void _jit_retval_f (jit_state_t*, jit_fpr_t);
+
 jit_node_t* _jit_arg_d (jit_state_t*);
+
 void _jit_getarg_d (jit_state_t*, jit_fpr_t, jit_node_t*);
 void _jit_putargr_d (jit_state_t*, jit_fpr_t, jit_node_t*);
 void _jit_putargi_d (jit_state_t*, jit_float64_t, jit_node_t*);
+
 void _jit_pushargr_d (jit_state_t*, jit_fpr_t);
 void _jit_pushargi_d (jit_state_t*, jit_float64_t);
 void _jit_retr_d (jit_state_t*, jit_fpr_t);
 void _jit_reti_d (jit_state_t*, jit_float64_t);
+
 void _jit_retval_d (jit_state_t*, jit_fpr_t);
+
 jit_node_t* _jit_new_node (jit_state_t*, jit_code_t);
 jit_node_t* _jit_new_node_w (jit_state_t*, jit_code_t, jit_word_t);
 jit_node_t* _jit_new_node_f (jit_state_t*, jit_code_t, jit_float32_t);
@@ -800,44 +822,37 @@ jit_node_t* _jit_new_node_wp (
     jit_code_t,
     jit_word_t,
     jit_pointer_t);
-
 jit_node_t* _jit_new_node_fp (
     jit_state_t*,
     jit_code_t,
     jit_float32_t,
     jit_pointer_t);
-
 jit_node_t* _jit_new_node_dp (
     jit_state_t*,
     jit_code_t,
     jit_float64_t,
     jit_pointer_t);
-
 jit_node_t* _jit_new_node_pw (
     jit_state_t*,
     jit_code_t,
     jit_pointer_t,
     jit_word_t);
-
 jit_node_t* _jit_new_node_wf (
     jit_state_t*,
     jit_code_t,
     jit_word_t,
     jit_float32_t);
-
 jit_node_t* _jit_new_node_wd (
     jit_state_t*,
     jit_code_t,
     jit_word_t,
     jit_float64_t);
-
 jit_node_t* _jit_new_node_www (
     jit_state_t*,
     jit_code_t,
     jit_word_t,
     jit_word_t,
     jit_word_t);
-
 jit_node_t* _jit_new_node_qww (
     jit_state_t*,
     jit_code_t,
@@ -845,35 +860,30 @@ jit_node_t* _jit_new_node_qww (
     jit_int32_t,
     jit_word_t,
     jit_word_t);
-
 jit_node_t* _jit_new_node_wwf (
     jit_state_t*,
     jit_code_t,
     jit_word_t,
     jit_word_t,
     jit_float32_t);
-
 jit_node_t* _jit_new_node_wwd (
     jit_state_t*,
     jit_code_t,
     jit_word_t,
     jit_word_t,
     jit_float64_t);
-
 jit_node_t* _jit_new_node_pww (
     jit_state_t*,
     jit_code_t,
     jit_pointer_t,
     jit_word_t,
     jit_word_t);
-
 jit_node_t* _jit_new_node_pwf (
     jit_state_t*,
     jit_code_t,
     jit_pointer_t,
     jit_word_t,
     jit_float32_t);
-
 jit_node_t* _jit_new_node_pwd (
     jit_state_t*,
     jit_code_t,
@@ -895,7 +905,6 @@ void jit_set_memory_functions (
     jit_alloc_func_ptr,
     jit_realloc_func_ptr,
     jit_free_func_ptr);
-
 void jit_get_memory_functions (
     jit_alloc_func_ptr*,
     jit_realloc_func_ptr*,
