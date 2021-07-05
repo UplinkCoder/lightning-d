@@ -902,10 +902,12 @@ jit_bool_t _jit_get_note (jit_state_t*, jit_pointer_t, char**, char**, int*);
 void _jit_disassemble (jit_state_t*);
 
 void jit_set_memory_functions (
-    jit_alloc_func_ptr,
-    jit_realloc_func_ptr,
-    jit_free_func_ptr);
+    jit_alloc_func_ptr _alloc,
+    jit_realloc_func_ptr _realloc,
+    jit_free_func_ptr _free);
+
 void jit_get_memory_functions (
-    jit_alloc_func_ptr*,
-    jit_realloc_func_ptr*,
-    jit_free_func_ptr*);
+    jit_alloc_func_ptr* _alloc,
+    jit_realloc_func_ptr* _realloc,
+    jit_free_func_ptr* _free);
+
