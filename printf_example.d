@@ -53,6 +53,7 @@ int main(string[] args)
 
   printf("54 + 102 = %d\n", expensiveAdd(54, 102));
   printf("54 + (-30) = %d\n", expensiveAdd(54, -30));
+  printf("54 + (-30) = %d\n", expensiveAdd64(54, -30));
 
   return 0;
 }
@@ -118,6 +119,7 @@ long expensiveAdd64(long a, long b)
 
   jit_node_t*    arg1, arg2;      /* to get the argument */
 
+  auto start = _jit_note(_jit, null, 0);
   _jit_prolog(_jit);
   arg1 = _jit_arg(_jit);
   arg2 = _jit_arg(_jit);
@@ -130,8 +132,35 @@ long expensiveAdd64(long a, long b)
 
   _jit_retr(_jit, JIT_R0);
   _jit_epilog(_jit);
+  auto end = _jit_note(_jit, null, 0);
+
+
 
   add64 = cast(typeof(add64))_jit_emit(_jit);
+  auto en = cast(ubyte*)(cast(char*)_jit_address(_jit, end));
+  auto be = cast(ubyte*)(cast(char*)_jit_address(_jit, start));
+  auto size =
+      cast(int)(cast(char*)_jit_address(_jit, end) - cast(char*)_jit_address(_jit, start));
+
+  for(ubyte* i = be; i < cast(ubyte*)((cast(size_t)en) & ~3); i += 4)
+  {
+    printf("%02x %02x %02x %02x\n", i[0], i[1], i[2], i[3]);
+  }
+  {
+  auto i = cast(ubyte*)((cast(size_t)en) & ~3);
+  final switch((cast(size_t)en) & 3)
+  {
+    case 3:
+        printf("%02x %02x %02x\n", i[0], i[1], i[2]);
+        break;
+    case 2:
+        printf("%02x %02x\n", i[0], i[1]);
+        break;
+    case 1:
+        printf("%02x\n", i[0]);
+        break;
+    case 0: break;
+  }}
 
   /* call the generated code, passing its size as argument */
   auto result = add64(a, b);
