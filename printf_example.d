@@ -109,14 +109,9 @@ struct Value
     }
 }
 
-ReturnValue* func(Arguments* args, Heap* heapP, Stack* stackP)
+long expensiveAdd64(long a, long b)
 {
-
-}  
-
-int expensiveAdd64(long a, long b)
-{
-  int function (int[2]*, int[2]*) add64;
+  long function (long, long) add64;
 
   init_jit(null);
   _jit = jit_new_state();
@@ -136,10 +131,10 @@ int expensiveAdd64(long a, long b)
   _jit_retr(_jit, JIT_R0);
   _jit_epilog(_jit);
 
-  add = cast(typeof(add))_jit_emit(_jit);
+  add64 = cast(typeof(add64))_jit_emit(_jit);
 
   /* call the generated code, passing its size as argument */
-  auto result = add(a, b);
+  auto result = add64(a, b);
   _jit_clear_state(_jit);
 
   _jit_destroy_state(_jit);
