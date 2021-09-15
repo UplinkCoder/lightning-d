@@ -80,29 +80,29 @@ enum jit_reg_t
     _NOREG = 64
 }
 
-extern (D) auto jit_r(T)(auto ref T i)
+jit_reg_t jit_r(int i)
 {
-    return jit_reg_t._R9 + i;
+    return cast(jit_reg_t)(jit_reg_t._R9 + i);
 }
 
-extern (D) int jit_r_num()
+int jit_r_num()
 {
     return 7;
 }
 
-extern (D) auto jit_v(T)(auto ref T i)
+jit_reg_t jit_v(int i)
 {
-    return jit_reg_t._R19 + i;
+    return cast(jit_reg_t) (jit_reg_t._R19 + i);
 }
 
-extern (D) int jit_v_num()
+int jit_v_num()
 {
     return 10;
 }
 
-extern (D) auto jit_f(T)(auto ref T i)
+jit_reg_t jit_f(int i)
 {
-    return jit_reg_t._V8 + i;
+    return cast(jit_reg_t)(jit_reg_t._V8 + i);
 }
 
 extern (D) int jit_f_num()
