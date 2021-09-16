@@ -151,7 +151,7 @@ enum JIT_F5 = jit_reg_t._XMM13;
 enum JIT_F6 = jit_reg_t._XMM14;
 enum JIT_F7 = jit_reg_t._XMM15;
 
-extern (D) auto jit_sse_reg_p(T)(auto ref T reg)
+bool jit_sse_reg_p(jit_reg_t reg)
 {
     return reg >= jit_reg_t._XMM8 && reg <= jit_reg_t._XMM0;
 }
